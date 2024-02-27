@@ -1,11 +1,11 @@
-# Burgernabije Besluitendatabank (back-end)
+# Fiscaal register (back-end)
 
-[The back-end for BNB](https://burgernabije-besluitendatabank-dev.s.redhost.be/), a project that uses linked data to empower everyone in Flanders to consult the decisions made by their local authorities.
+<!-- [The back-end for BNB](https://burgernabije-besluitendatabank-dev.s.redhost.be/), a project that uses linked data to empower everyone in Flanders to consult the decisions made by their local authorities. -->
 
 This project has different important moving parts:
 - The harvester (which is available in [the app-lblod-harvester repository](https://github.com/lblod/app-lblod-harvester)). This processes government-provided data into consumable [data endpoints, which you can view here](#what-endpoints-can-be-used)
 - The back-end (this repository). This is a docker-compose configuration that combines the front-end together with other services.
-- The front-end (which is available in [the frontend-burgernabije-besluitendatabank repo](https://github.com/lblod/frontend-burgernabije-besluitendatabank)). This is an Ember frontend 
+<!-- - The front-end (which is available in [the frontend-burgernabije-besluitendatabank repo](https://github.com/lblod/frontend-burgernabije-besluitendatabank)). This is an Ember frontend  -->
 
 
 You can check out more info on besluitendatabanken [here](https://lokaalbestuur.vlaanderen.be/besluitendatabank), and the [back-end](https://github.com/lblod/frontend-burgernabije-besluitendatabank) here. The front-end repo only contains front-end specific information, back-and and general project info will be added here.
@@ -22,8 +22,8 @@ You can run this app in a few different ways
 ### Basic setup
 First, clone the repository
 ```bash
-git clone https://github.com/lblod/app-burgernabije-besluitendatabank.git
-cd app-burgernabije-besluitendatabank.git
+git clone https://github.com/lblod/app-fiscaal-register.git
+cd app-fiscaal-register.git
 ```
 
 #### Selecting endpoints
@@ -213,16 +213,16 @@ Ensure the flag `BYPASS_MU_AUTH_FOR_EXPENSIVE_QUERIES` is set to `false` for **E
 - QA data: https://organisaties.abb.lblod.info/
 - DEV data: https://dev.organisaties.abb.lblod.info/
 
-### Bestuursorganen Report
+<!-- ### Bestuursorganen Report
 
-The report is generated every Sunday at 23:00. The report is available at `/download-exports/exports/Bestuursorganen`. 
+The report is generated every Sunday at 23:00. The report is available at `/download-exports/exports/Bestuursorganen`.  -->
 
-#### Trigger report generation manually
+<!-- #### Trigger report generation manually
 
-First you need to find the IP address of the `generate-reports` service. You can do this by running `docker inspect app-burgernabije-besluitendatabank-report-generation-1 | grep IPAddress`. Then use the IP address in the following command:
+First you need to find the IP address of the `generate-reports` service. You can do this by running `docker inspect app-fiscaal-register-report-generation-1 | grep IPAddress`. Then use the IP address in the following command:
 ```bash
 curl --header "Content-Type: application/json" --request POST --data '{"data":{"attributes":{"reportName":"governing-body-report"}}}' $IPAddress/reports
-```
+``` -->
 
 ## Reference
 
