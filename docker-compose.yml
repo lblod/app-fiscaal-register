@@ -35,27 +35,27 @@ services:
     labels:
       - "logging=true"
 
-  # Front-end made for BNB
-  # https://github.com/lblod/frontend-burgernabije-besluitendatabank
-  frontend:
-    image: lblod/frontend-burgernabije-besluitendatabank:0.7.0
-    links:
-      - identifier
-    restart: always
-    logging: *default-logging
-    labels:
-      - "logging=true"
+  # Front-end to be added back in later
+  # frontend:
+  #   image: lblod/??
+  #   links:
+  #     - identifier
+  #   restart: always
+  #   logging: *default-logging
+  #   labels:
+  #     - "logging=true"
 
   # Proxy for mu-cl-resources that allows caching
+  # To be added back in later
   # https://github.com/mu-semtech/mu-cache
-  cache:
-    image: semtech/mu-cache:2.0.2
-    links:
-      - resources:backend
-    restart: always
-    logging: *default-logging
-    labels:
-      - "logging=true"
+  # cache:
+  #   image: semtech/mu-cache:2.0.2
+  #   links:
+  #     - resources:backend
+  #   restart: always
+  #   logging: *default-logging
+  #   labels:
+  #     - "logging=true"
 
   # Allows accessing linked data as a JSON:API endpoint. Used by frontend
   # https://github.com/mu-semtech/mu-cl-resources
@@ -129,16 +129,17 @@ services:
 
   # Service that generates uuid's for imported data to allow linked-data usage
   # https://github.com/redpencilio/uuid-generation-service
-  uuid-generation:
-    image: redpencil/uuid-generation:0.2.1
-    volumes:
-      - ./config/uuid-generation/:/config
-    links:
-      - triplestore:database
-    restart: always
-    logging: *default-logging
-    labels:
-      - "logging=true"
+  # Disable for now. See what it does first
+  # uuid-generation:
+  #   image: redpencil/uuid-generation:0.2.1
+  #   volumes:
+  #     - ./config/uuid-generation/:/config
+  #   links:
+  #     - triplestore:database
+  #   restart: always
+  #   logging: *default-logging
+  #   labels:
+  #     - "logging=true"
 
   # Imports endpoint data into the triplestore
   # https://github.com/lblod/delta-consumer
@@ -214,24 +215,7 @@ services:
     logging: *default-logging
     labels:
       - "logging=true"
-  search:
-    image: semtech/mu-search:0.10.0-beta.3
-    volumes:
-      - ./config/search:/config
-    restart: always
-    logging: *default-logging
-    labels:
-      - "logging=true"
-  elasticsearch:
-    image: semtech/mu-search-elastic-backend:1.0.1
-    volumes:
-      - ./data/elasticsearch/:/usr/share/elasticsearch/data
-    environment:
-      - discovery.type=single-node
-    restart: always
-    logging: *default-logging
-    labels:
-      - "logging=true"
+
   report-generation:
     image: lblod/loket-report-generation-service:0.8.0
     environment:

@@ -94,14 +94,6 @@ defmodule Dispatcher do
     Proxy.forward conn, [], "http://uuid-generation/run"
   end
 
-  ###############################################################
-  # SEARCH
-  ###############################################################
-
-  match "/search/*path", @json do
-    Proxy.forward conn, path, "http://search/"
-  end
-
   #################################################################
   #  Exports
   #################################################################
@@ -117,16 +109,24 @@ defmodule Dispatcher do
   ###############
   # FRONTEND
   ###############
-  match "/assets/*path", @any do
-    Proxy.forward conn, path, "http://frontend/assets/"
-  end
+  #  match "/assets/*path", @any do
+  #    Proxy.forward conn, path, "http://frontend/assets/"
+  #  end
+  #
+  #  match "/@appuniversum/*path", @any do
+  #    Proxy.forward conn, path, "http://frontend/@appuniversum/"
+  #  end
+  #
+  #  match "/*_path", @html do
+  #    Proxy.forward conn, [], "http://frontend/index.html"
+  #  end
 
-  match "/@appuniversum/*path", @any do
-    Proxy.forward conn, path, "http://frontend/@appuniversum/"
-  end
+  ###############
+  # TEMPORARY: HEALTH
+  ###############
 
-  match "/*_path", @html do
-    Proxy.forward conn, [], "http://frontend/index.html"
+  match "/health/ping", @any do
+    send_resp( conn, 200, "FR is alive and responding" )
   end
 
   #################
